@@ -1,0 +1,31 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'com.squareup.okhttp3:okhttp:4.5.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation group: 'com.google.guava', name: 'guava', version: '21.0'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.13.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
