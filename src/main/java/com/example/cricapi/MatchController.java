@@ -107,7 +107,7 @@ public class MatchController {
 
         MatchResponse.Bowling bowling = new MatchResponse.Bowling();
         List<MatchResponse.Score> bowlingScores1 = Lists.newArrayList();
-        scorecard2.getBowler().forEach(bowler ->  {
+        scorecard1.getBowler().forEach(bowler ->  {
             bowlingScores1.add(convertBowlerToScore(bowler));
         });
         bowling.setScores(bowlingScores1);
