@@ -140,8 +140,10 @@ public class MatchController {
         score.set_4s(batsman.getFours());
         score.set_6s(batsman.getSixes());
         score.setB(batsman.getBalls());
+        score.setDismissal(batsman.getOutDec());
         score.setR(String.valueOf(batsman.getRuns()));
         score.setPid(String.valueOf(batsman.getId()));
+        score.setName(batsman.getName());
         checkForPatternAndAddFielding(batsman, playerNameVsPlayerId, fieldingScores);
         return score;
     }
@@ -162,6 +164,7 @@ public class MatchController {
                         MatchResponse.Score currentScore = fieldingScores.get(id);
                         if (currentScore == null) {
                             currentScore = new MatchResponse.Score();
+                            currentScore.setPid(id);
                         }
 
                         currentScore.setMycatch(currentScore.mycatch + 1);
@@ -180,6 +183,7 @@ public class MatchController {
                     MatchResponse.Score currentScore = fieldingScores.get(id);
                     if(currentScore == null) {
                         currentScore = new MatchResponse.Score();
+                        currentScore.setPid(id);
                     }
                     currentScore.setMycatch(currentScore.stumped + 1);
                     fieldingScores.put(id, currentScore);
@@ -196,6 +200,7 @@ public class MatchController {
                     MatchResponse.Score currentScore = fieldingScores.get(id);
                     if(currentScore == null) {
                         currentScore = new MatchResponse.Score();
+                        currentScore.setPid(id);
                     }
                     currentScore.setMycatch(currentScore.runout + 1);
                     fieldingScores.put(id, currentScore);
@@ -209,6 +214,7 @@ public class MatchController {
                     MatchResponse.Score currentScore = fieldingScores.get(id);
                     if(currentScore == null) {
                         currentScore = new MatchResponse.Score();
+                        currentScore.setPid(id);
                     }
                     currentScore.setMycatch(currentScore.runout + 1);
                     fieldingScores.put(id, currentScore);
@@ -223,6 +229,7 @@ public class MatchController {
         score.setPid(String.valueOf(bowler.getId()));
         score.setW(String.valueOf(bowler.getWickets()));
         score.setEcon(bowler.getEconomy());
+        score.setName(bowler.getName());
         return score;
     }
 
