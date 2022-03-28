@@ -31,6 +31,12 @@ public class MatchController {
     public static final Pattern stumpedPattern = Pattern.compile("st ([a-zA-z ]*) b ([a-zA-z ]*)", Pattern.CASE_INSENSITIVE);
     public static final Pattern runOutPattern = Pattern.compile("run out \\(([a-zA-z ]*)\\/([a-zA-z ]*)\\)\n", Pattern.CASE_INSENSITIVE);
 
+    @GetMapping(value = "/test",
+            produces = MediaType.APPLICATION_JSON_VALUE )
+    public String getMatchResponse() {
+           return "App is fine";
+        }
+
     @GetMapping(value = "/getMatch",
             produces = MediaType.APPLICATION_JSON_VALUE )
     public MatchResponse getMatchResponse(@RequestParam String matchId) {
