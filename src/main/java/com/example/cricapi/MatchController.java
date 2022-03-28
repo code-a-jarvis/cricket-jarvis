@@ -72,16 +72,18 @@ public class MatchController {
 
 
     private MatchResponse convertToMatchResponse(Match match) {
-        Map<String , String> playerNameVsPlayerId = Maps.newHashMap();
+        Map<String , String> playerNameVsPlayerTeam1 = Maps.newHashMap();
+        Map<String , String> playerNameVsPlayerTeam2 = Maps.newHashMap();
+
         MatchResponse matchResponse = new MatchResponse();
         Match.Scorecard scorecard1 = match.getScorecard().get(0);
         Match.Scorecard scorecard2 = match.getScorecard().get(1);
 
         MatchResponse.Data data = new MatchResponse.Data();
         MatchResponse.Team team1 = new MatchResponse.Team();
-        team1.setPlayers(getPlayers(scorecard1, playerNameVsPlayerId));
+        team1.setPlayers(getPlayers(scorecard1, playerNameVsPlayerTeam1));
         MatchResponse.Team team2 = new MatchResponse.Team();
-        team2.setPlayers(getPlayers(scorecard2, playerNameVsPlayerId));
+        team2.setPlayers(getPlayers(scorecard2, playerNameVsPlayerTeam2));
         data.setTeam(Lists.newArrayList(team1, team2));
         matchResponse.setData(data);
 
@@ -90,7 +92,7 @@ public class MatchController {
         MatchResponse.Batting batting = new MatchResponse.Batting();
         List<MatchResponse.Score> scores1 = Lists.newArrayList();
         scorecard1.getBatsman().forEach( batsman ->  {
-            scores1.add(convertBatsmanToScore(batsman, playerNameVsPlayerId, fieldingScores));
+            scores1.add(convertBatsmanToScore(batsman, playerNameVsPlayerTeam2, fieldingScores));
         });
         batting.setScores(scores1);
 
@@ -98,7 +100,7 @@ public class MatchController {
         MatchResponse.Batting batting2 = new MatchResponse.Batting();
         List<MatchResponse.Score> scores2 = Lists.newArrayList();
         scorecard2.getBatsman().forEach( batsman ->  {
-            scores2.add(convertBatsmanToScore(batsman, playerNameVsPlayerId, fieldingScores));
+            scores2.add(convertBatsmanToScore(batsman, playerNameVsPlayerTeam1, fieldingScores));
         });
         batting2.setScores(scores2);
 
@@ -230,6 +232,7 @@ public class MatchController {
         score.setW(String.valueOf(bowler.getWickets()));
         score.setEcon(bowler.getEconomy());
         score.setName(bowler.getName());
+        score.setO(bowler.getOvers());
         return score;
     }
 
