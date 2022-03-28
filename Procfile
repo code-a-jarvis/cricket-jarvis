@@ -1,1 +1,1 @@
-web: java -jar build/libs/cricapi-0.0.1-SNAPSHOT.jar
+web: java -jar $JAVA_OPTS -jar -Dserver.port=$PORT build/libs/cricapi-0.0.1-SNAPSHOT.jar
