@@ -28,8 +28,11 @@ import java.util.regex.Pattern;
 public class MatchController {
 
     public static final Pattern catchPattern = Pattern.compile("c ([a-zA-z ]*) b ([a-zA-z ]*)", Pattern.CASE_INSENSITIVE);
+    public static final Pattern catchPattern2 = Pattern.compile("c and b ([a-zA-z ]*)", Pattern.CASE_INSENSITIVE);
     public static final Pattern stumpedPattern = Pattern.compile("st ([a-zA-z ]*) b ([a-zA-z ]*)", Pattern.CASE_INSENSITIVE);
-    public static final Pattern runOutPattern = Pattern.compile("run out \\(([a-zA-z ]*)\\/([a-zA-z ]*)\\)\n", Pattern.CASE_INSENSITIVE);
+    public static final Pattern runOutPattern = Pattern.compile("run out \\(([a-zA-z ]*)\\/([a-zA-z ]*)\\)", Pattern.CASE_INSENSITIVE);
+    public static final Pattern runOutPattern2 = Pattern.compile("run out \\(([a-zA-z ]*)\\)", Pattern.CASE_INSENSITIVE);
+
 
     @GetMapping(value = "/test",
             produces = MediaType.APPLICATION_JSON_VALUE )
@@ -174,6 +177,42 @@ public class MatchController {
                     }
                 });
             }
+
+         matcher = catchPattern2.matcher(dismissal);
+        if (matcher.matches()) {
+            String fielderName = matcher.group(1);
+            playerNames.forEach(playerName -> {
+                if (playerName.contains(fielderName)) {
+                    String id = playerNameVsPlayerId.get(playerName);
+                    MatchResponse.Score currentScore = fieldingScores.get(id);
+                    if (currentScore == null) {
+                        currentScore = new MatchResponse.Score();
+                        currentScore.setPid(id);
+                    }
+
+                    currentScore.setMycatch(currentScore.mycatch + 1);
+                    fieldingScores.put(id, currentScore);
+                }
+            });
+        }
+
+        matcher = runOutPattern2.matcher(dismissal);
+        if (matcher.matches()) {
+            String fielderName = matcher.group(1);
+            playerNames.forEach(playerName -> {
+                if (playerName.contains(fielderName)) {
+                    String id = playerNameVsPlayerId.get(playerName);
+                    MatchResponse.Score currentScore = fieldingScores.get(id);
+                    if (currentScore == null) {
+                        currentScore = new MatchResponse.Score();
+                        currentScore.setPid(id);
+                    }
+
+                    currentScore.setMycatch(currentScore.runout + 1);
+                    fieldingScores.put(id, currentScore);
+                }
+            });
+        }
 
         Matcher matcher1 = stumpedPattern.matcher(dismissal);
         if(matcher1.matches()) {
