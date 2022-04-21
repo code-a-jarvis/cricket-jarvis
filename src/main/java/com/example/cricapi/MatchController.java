@@ -208,7 +208,7 @@ public class MatchController {
                         currentScore.setPid(id);
                     }
 
-                    currentScore.setMycatch(currentScore.runout + 1);
+                    currentScore.setRunout(currentScore.runout + 1);
                     fieldingScores.put(id, currentScore);
                 }
             });
@@ -226,7 +226,7 @@ public class MatchController {
                         currentScore = new MatchResponse.Score();
                         currentScore.setPid(id);
                     }
-                    currentScore.setMycatch(currentScore.stumped + 1);
+                    currentScore.setStumped(currentScore.stumped + 1);
                     fieldingScores.put(id, currentScore);
                 }
             });
@@ -243,7 +243,7 @@ public class MatchController {
                         currentScore = new MatchResponse.Score();
                         currentScore.setPid(id);
                     }
-                    currentScore.setMycatch(currentScore.runout + 1);
+                    currentScore.setRunout(currentScore.runout + 1);
                     fieldingScores.put(id, currentScore);
                 }
             });
@@ -257,7 +257,7 @@ public class MatchController {
                         currentScore = new MatchResponse.Score();
                         currentScore.setPid(id);
                     }
-                    currentScore.setMycatch(currentScore.runout + 1);
+                    currentScore.setRunout(currentScore.runout + 1);
                     fieldingScores.put(id, currentScore);
                 }
             });
