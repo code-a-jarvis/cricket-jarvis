@@ -9,7 +9,7 @@ class CricapiApplicationTests {
     @Test
     void contextLoads() {
         MatchController matchController = new MatchController();
-        matchController.getMatchResponse("45891");
+        matchController.getMatchResponse("46041");
     }
 
 }

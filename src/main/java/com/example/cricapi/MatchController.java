@@ -160,6 +160,7 @@ public class MatchController {
         if(StringUtils.isBlank(dismissal)) {
             return;
         }
+        dismissal = dismissal.trim();
             Matcher matcher = catchPattern.matcher(dismissal);
             if (matcher.matches()) {
                 String fielderName = matcher.group(1);
