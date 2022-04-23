@@ -235,7 +235,7 @@ public class MatchController {
 
         Matcher matcher2 = runOutPattern.matcher(dismissal);
         if(matcher2.matches()) {
-            String fielderName1= matcher1.group(1);
+            String fielderName1= matcher2.group(1);
             playerNames.forEach( playerName -> {
                 if (playerName.contains(fielderName1)) {
                     String id = playerNameVsPlayerId.get(playerName);
@@ -249,7 +249,7 @@ public class MatchController {
                 }
             });
 
-            String fielderName2= matcher1.group(2);
+            String fielderName2= matcher2.group(2);
             playerNames.forEach( playerName -> {
                 String id = playerNameVsPlayerId.get(playerName);
                 if (playerName.contains(fielderName2)) {
