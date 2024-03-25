@@ -57,7 +57,7 @@ public class MatchController {
                     .url("https://unofficial-cricbuzz.p.rapidapi.com/matches/get-scorecard?matchId=" + matchId)
                     .get()
                     .addHeader("X-RapidAPI-Host", "unofficial-cricbuzz.p.rapidapi.com")
-                    .addHeader("X-RapidAPI-Key", "bab291ad91msh898a68587e0218cp14f783jsne906264597d0")
+                    .addHeader("X-RapidAPI-Key", "8df2f59a25msh5df00509f3d3039p128cd6jsn9e7aac9345e9")
                     .build();
 
 
