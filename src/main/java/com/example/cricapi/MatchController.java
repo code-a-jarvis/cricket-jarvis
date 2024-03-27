@@ -69,6 +69,7 @@ public class MatchController {
             MatchResponse matchResponse =  new MatchResponse();
             matchResponse.setType(e.getMessage());
             matchResponse.setV(e.getStackTrace().toString());
+            e.printStackTrace();
             return  matchResponse;
         }
     }
@@ -284,12 +285,12 @@ public class MatchController {
         batsmen.forEach(batsman ->  {
             MatchResponse.Player player = new MatchResponse.Player();
             player.setName(batsman.getName());
-            player.setNickName(batsman.getNickName());
             player.setPid(String.valueOf(batsman.getId()));
             players.add(player);
             playerNameVsPlayerId.put(batsman.getName(), String.valueOf(batsman.getId()));
-            if(!player.name.contains(player.nickName)) {
-            playerNameVsPlayerId.put(batsman.getNickName(), String.valueOf(batsman.getId()));
+            if(batsman.name != null &&  batsman.nickName!=null && !batsman.name.contains(batsman.nickName)) {
+                player.setNickName(batsman.getNickName());
+                playerNameVsPlayerId.put(batsman.getNickName(), String.valueOf(batsman.getId()));
             }
         });
         
