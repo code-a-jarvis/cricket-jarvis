@@ -176,7 +176,6 @@ public class MatchController {
 
                         currentScore.setMycatch(currentScore.mycatch + 1);
                         fieldingScores.put(id, currentScore);
-                        break;
                     }
                 });
             }
@@ -285,7 +284,7 @@ public class MatchController {
         batsmen.forEach(batsman ->  {
             MatchResponse.Player player = new MatchResponse.Player();
             player.setName(batsman.getName());
-            player.setNickName(batsman.getNickName())
+            player.setNickName(batsman.getNickName());
             player.setPid(String.valueOf(batsman.getId()));
             players.add(player);
             playerNameVsPlayerId.put(batsman.getName(), String.valueOf(batsman.getId()));
