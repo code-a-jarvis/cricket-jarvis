@@ -230,6 +230,7 @@ public class MatchResponse {
 
     public static class Player {
         public String name;
+        public String nickName;
         public String pid;
 
         public void setName(String name) {
@@ -238,6 +239,10 @@ public class MatchResponse {
 
         public void setPid(String pid) {
             this.pid = pid;
+        }
+
+         public void setNickName(String nickName) {
+            this.nickName = nickName;
         }
     }
 

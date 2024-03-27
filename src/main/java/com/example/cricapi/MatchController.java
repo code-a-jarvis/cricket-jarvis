@@ -161,6 +161,7 @@ public class MatchController {
             return;
         }
         dismissal = dismissal.trim();
+
             Matcher matcher = catchPattern.matcher(dismissal);
             if (matcher.matches()) {
                 String fielderName = matcher.group(1);
@@ -175,6 +176,7 @@ public class MatchController {
 
                         currentScore.setMycatch(currentScore.mycatch + 1);
                         fieldingScores.put(id, currentScore);
+                        break;
                     }
                 });
             }
@@ -218,7 +220,7 @@ public class MatchController {
         Matcher matcher1 = stumpedPattern.matcher(dismissal);
         if(matcher1.matches()) {
             String fielderName= matcher1.group(1);
-            playerNames.forEach( playerName -> {
+            playerNames.forEach(playerName -> {
                 if (playerName.contains(fielderName)) {
                     String id = playerNameVsPlayerId.get(playerName);
 
@@ -283,9 +285,13 @@ public class MatchController {
         batsmen.forEach(batsman ->  {
             MatchResponse.Player player = new MatchResponse.Player();
             player.setName(batsman.getName());
+            player.setNickName(batsman.getNickName())
             player.setPid(String.valueOf(batsman.getId()));
             players.add(player);
             playerNameVsPlayerId.put(batsman.getName(), String.valueOf(batsman.getId()));
+            if(!player.name.contains(player.nickName)) {
+            playerNameVsPlayerId.put(batsman.getNickName(), String.valueOf(batsman.getId()));
+            }
         });
         
         return players;
